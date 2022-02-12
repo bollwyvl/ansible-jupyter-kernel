@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from setuptools import setup, find_packages
 from setuptools.command.install import install
 
@@ -14,7 +15,7 @@ class Installer(install):
         from jupyter_client.kernelspec import KernelSpecManager
         from IPython.utils.tempdir import TemporaryDirectory
         kernel_json = {
-            "argv": ["python", "-m", "ansible_kernel", "-f", "{connection_file}"],
+            "argv": [sys.executable, "-m", "ansible_kernel", "-f", "{connection_file}"],
             "codemirror_mode": "yaml",
             "display_name": "Ansible",
             "language": "ansible"
@@ -45,7 +46,6 @@ setup(
         'ansible-runner>=1.1.0',
         'PyYAML',
         'psutil',
-        'jupyter',
         'tqdm',
         'docopt',
         'six',
